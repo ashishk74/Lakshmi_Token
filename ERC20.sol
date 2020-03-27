@@ -34,6 +34,8 @@ import "./SafeMath.sol";
 contract ERC20 is Context, ERC20Detailed {
     using SafeMath for uint256;
 
+    constructor(string memory name, string memory symbol, uint8 decimals) ERC20Detailed(name, symbol, decimals) public { }
+
     mapping (address => uint256) private _balances;
 
     mapping (address => mapping (address => uint256)) private _allowances;
@@ -184,6 +186,11 @@ contract ERC20 is Context, ERC20Detailed {
         emit Transfer(address(0), account, amount);
     }
 
+    /*function mint(address account, uint256 amount) public onlyMinter returns (bool) {
+        _mint(account, amount);
+        return true;
+    */
+    
     /**
      * @dev Destroys `amount` tokens from `account`, reducing the
      * total supply.

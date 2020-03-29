@@ -3,8 +3,7 @@ pragma solidity ^0.6.0;
 import "./Context.sol";
 import "./ERC20Detailed.sol";
 import "./SafeMath.sol";
-
-
+import "./GSNRecipient.sol";
 
 
 /**
@@ -31,7 +30,7 @@ import "./SafeMath.sol";
  * functions have been added to mitigate the well-known issues around setting
  * allowances. See {IERC20-approve}.
  */
-contract ERC20 is Context, ERC20Detailed {
+contract ERC20 is Context, ERC20Detailed, GSNRecipient {
     using SafeMath for uint256;
 
     constructor(string memory name, string memory symbol, uint8 decimals) ERC20Detailed(name, symbol, decimals) public { }
@@ -40,7 +39,8 @@ contract ERC20 is Context, ERC20Detailed {
 
     mapping (address => mapping (address => uint256)) private _allowances;
 
-    uint256 private _totalSupply;
+    uint256 private _totalSupply = 1000000;
+
 
     /**
      * @dev See {IERC20-totalSupply}.
